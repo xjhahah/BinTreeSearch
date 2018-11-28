@@ -53,7 +53,7 @@ int BSTreeInsert(BSTreeNode** tree, BSTDataType data)
 	return 1;
 }
 //删除
-int BSTreeRemove(BSTreeNode** tree, BSTDataType data)
+int BSTreeRemove(BSTreeNode** tree, BSTDataType data)  //改变指针时需要传入指针的指针
 {
 	BSTreeNode* pCur = NULL;
 	BSTreeNode* pParent = NULL;
@@ -76,25 +76,40 @@ int BSTreeRemove(BSTreeNode** tree, BSTDataType data)
 			//1.左/右为空
 			if (pCur->_left == NULL)
 			{
-				if (pParent->_left == pCur)
+				if (NULL == pParent)
 				{
-					pParent->_left = pCur->_right;
+					*tree = pCur->_right;
 				}
-				else if (pParent->_right == pCur)
+				else
 				{
-					pParent->_right = pCur->_right;
+					if (pParent->_left == pCur)
+					{
+						pParent->_left = pCur->_right;
+					}
+					else
+					{
+						pParent->_right = pCur->_right;
+					}
+
 				}
 			}
 			else if (pCur->_right == NULL)
 			{
-				if (pParent->_left == pCur)
+				if (NULL == pParent)
 				{
-					pParent->_left = pCur->_left;
+					*tree = pCur->_left;
 				}
-				else if (pParent->_right == pCur)
+				else
 				{
-					pParent->_right = pCur->_left;
-				}
+					if (pParent->_left == pCur)
+					{
+						pParent->_left = pCur->_left;
+					}
+					else
+					{
+						pParent->_right = pCur->_left;
+					}
+				}			
 			}
 			//2.左右都不空
 			else
@@ -105,8 +120,9 @@ int BSTreeRemove(BSTreeNode** tree, BSTDataType data)
 					replace = replace->_left;
 				}
 				pCur->_data = replace->_data;
-				return BSTreeRemove(&pCur, replace->_data);
+				return BSTreeRemove(&pCur->_right, replace->_data);
 			}
+			free(tree);
 			return 1;
 		}
 	}

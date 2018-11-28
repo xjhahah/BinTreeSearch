@@ -18,6 +18,11 @@ void TestBSTree()
 	printf("\n");
 
 	BSTreeRemove(&tree, 9);
+	BSTreeRemove(&tree, 4);
+	BSTreeRemove(&tree, 5);
+	BSTreeRemove(&tree, 2);
+	BSTreeRemove(&tree, 1);
+	BSTreeRemove(&tree, 0);
 	BSTreeInOrder(&tree);
 	printf("\n");
 }
