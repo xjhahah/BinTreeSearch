@@ -18,12 +18,18 @@
     <ClInclude Include="Search.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="KeyValue.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Mian.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="BSTree.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyValue.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

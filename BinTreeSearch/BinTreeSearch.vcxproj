@@ -115,10 +115,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="KeyValue.h" />
     <ClInclude Include="Search.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BSTree.c" />
+    <ClCompile Include="KeyValue.c" />
     <ClCompile Include="Mian.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -149,6 +149,105 @@ BSTreeNode* BSTreeFind(BSTreeNode** tree, BSTDataType data)
 	}
 	return NULL;
 }
+
+//递归实现
+int BSTreeInsertR(BSTreeNode** tree, BSTDataType data)
+{
+	if (NULL == *tree)
+	{
+		*tree = BuyBSTreeNode(data);
+		return 1;
+	}
+	if ((*tree)->_data > data)
+	{
+		return BSTreeInsertR(&(*tree)->_left, data);
+	}
+	else if ((*tree)->_data < data)
+	{
+		return  BSTreeInsertR(&(*tree)->_right, data);
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int BSTreeRemoveR(BSTreeNode** tree, BSTDataType data)
+{
+	if (NULL == *tree)
+	{
+		return -1;
+	}
+	if ((*tree)->_data > data)
+	{
+		return BSTreeRemoveR(&(*tree)->_left, data);
+	}
+	else if ((*tree)->_data < data)
+	{
+		return BSTreeRemoveR(&(*tree)->_right, data);
+	}
+	//走到这里说明找到了要删除的节点
+	else
+	{
+		BSTreeNode* del = *tree;
+		//左为空
+		if (NULL == (*tree)->_left)
+		{
+			*tree = (*tree)->_right;
+			free(del);
+		}
+		//右为空
+		else if (NULL == (*tree)->_right)
+		{
+			*tree = (*tree)->_left;
+		}
+		//左右都不空
+		else
+		{
+			BSTreeNode* replace = (*tree)->_right;
+			while (replace->_left)
+			{
+				replace = replace->_left;
+			}
+			(*tree)->_data = replace->_data;
+			return BSTreeRemoveR(&(*tree)->_right, replace->_data);
+		}
+
+	}
+	return 1;
+}
+
+BSTreeNode* BSTreeFindR(BSTreeNode** tree, BSTDataType data)
+{
+	if (NULL == *tree)
+	{
+		return NULL;
+	}
+	if ((*tree)->_data > data)
+	{
+		return BSTreeFindR(&(*tree)->_left, data);
+	}
+	else if ((*tree)->_data < data)
+	{
+		return BSTreeFindR(&(*tree)->_right, data);
+	}
+	else
+	{
+		return *tree;
+	}
+}
+
+void BStreeDestroy(BSTreeNode** tree)
+{
+	assert(*tree);
+	if (*tree)
+	{
+		BStreeDestroy(&(*tree)->_left);
+		BStreeDestroy(&(*tree)->_right);
+		free(*tree);
+		*tree = NULL;
+	}
+}
 void BSTreeInOrder(BSTreeNode** tree)
 {
 	if (NULL == *tree)

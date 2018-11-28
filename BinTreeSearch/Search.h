@@ -12,7 +12,15 @@ typedef struct BSTreeNode
 	BSTDataType _data;
 }BSTreeNode;
 
+//∑«µ›πÈ
 int BSTreeInsert(BSTreeNode** tree, BSTDataType data);
 int BSTreeRemove(BSTreeNode** tree, BSTDataType data);
 BSTreeNode* BSTreeFind(BSTreeNode** tree, BSTDataType data);
+void BStreeDestroy(BSTreeNode** tree);
+
+//µ›πÈ µœ÷
+int BSTreeInsertR(BSTreeNode** tree, BSTDataType data);
+int BSTreeRemoveR(BSTreeNode** tree, BSTDataType data);
+BSTreeNode* BSTreeFindR(BSTreeNode** tree, BSTDataType data);
+
 void BSTreeInOrder(BSTreeNode** tree);
