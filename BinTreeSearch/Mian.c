@@ -12,6 +12,14 @@ void TestBSTree()
 	}
 	BSTreeInOrder(&tree);
 	printf("\n");
+
+	BSTreeInsert(&tree, 10);
+	BSTreeInOrder(&tree);
+	printf("\n");
+
+	BSTreeRemove(&tree, 9);
+	BSTreeInOrder(&tree);
+	printf("\n");
 }
 
 int main()

@@ -105,7 +105,7 @@ int BSTreeRemove(BSTreeNode** tree, BSTDataType data)
 					replace = replace->_left;
 				}
 				pCur->_data = replace->_data;
-				return BSTreeRemove(&pCur->_data, replace->_data);
+				return BSTreeRemove(&pCur, replace->_data);
 			}
 			return 1;
 		}
